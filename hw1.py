@@ -2,9 +2,8 @@ import json
 import random
 import requests
 from math import sqrt
-from jsonschema.benchmarks.contains import middle
 
-ids = ['111111111', '222222222']
+ids = ['214986523', '214683914']
 
 
 def plus_minus(lst):
@@ -44,13 +43,15 @@ def std(lst):
     Returns the sample standard deviation of a list of numbers.
     lst: A list of numbers
     """
+    if len(lst)<2:
+        return 0
     total = 0
     average = sum(lst) / len(lst)
 
     for i in range(len(lst)):
-        total += ((1 / (len(lst) - 1)) * ((lst[i] - average) ** 2))
+        total +=   ((lst[i] - average) ** 2)
 
-    return total ** 0.5
+    return (total / (len(lst) - 1)) ** 0.5
     # TODOD: Implement this function
     
 
@@ -62,8 +63,7 @@ def apply_func_shuffle(lst, f1, f2):
     """
     shuffled_lst = list(lst)  # do not change
     random.shuffle(shuffled_lst)  # do not change
-    f1(shuffled_lst)
-    f2(shuffled_lst)
+    return f1(shuffled_lst), f2(shuffled_lst)
 
     # TODO: Implement the rest of this function
     
